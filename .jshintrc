@@ -1,0 +1,3 @@
+{
+  "predef": ["require", "setInterval", "setTimeout", "console"]
+}

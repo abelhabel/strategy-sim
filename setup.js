@@ -1,17 +1,15 @@
 window.module = {
   camelize: function(str) {
     return str.replace(/\-[a-z]?|_[a-z]|\s[a-z]/g, function(letters, index) {
-      console.log(index, letters);
       return index == 0 ? letters.toLowerCase() : letters.toUpperCase();
     }).replace(/\-|_|\s/g, '');
   },
   add: function(val){
-    console.log('exports', val);
-    module[module.camelize(module.nextModuleName)] = module[module.nextModuleName] = val; 
+    module[module.camelize(module.nextModuleName)] = module[module.nextModuleName] = val;
   },
   exports: null,
   set exports(val) {
-    module.add(val); 
+    module.add(val);
   }
 };
 
@@ -47,28 +45,23 @@ function require(moduleName){
       scriptLoader.next(name);
     };
   }
-  
+
   var scriptLoader = {
     scripts: [],
     next: function() {
       if(this.scripts.length){
-        console.log(this.scripts[0]);
         module.nextModuleName = this.scripts[0];
         getScript(this.scripts[0], compileScript);
         scriptLoader.scripts.shift();
-        console.log(scriptLoader.scripts);
+      }else{
+        module.nextModuleName = '';
       }
     }
-  }
-  
+  };
+
   scriptLoader.scripts.push.apply(scriptLoader.scripts, arguments);
-  console.log(arguments);
   scriptLoader.next();
 
 }
 
-require('base-unit');
-require('base-object', 'canvas');
-
-
-
+require('go', 'base-unit', 'base-object', 'slow-and-strong','canvas','unit-actions' ,'draw', 'init');

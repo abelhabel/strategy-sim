@@ -6,7 +6,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/js/:fileName', function(req, res) {
-  console.log('filename:', req.params.fileName);
+  console.log(req.params.fileName);
   res.sendFile(__dirname + '/' + req.params.fileName);
 });
 
