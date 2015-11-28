@@ -26,5 +26,4 @@ function initLoops() {
   }, 3000);
 }
 
-initCanvas();
-initLoops();
+module.exports = {initCanvas: initCanvas, initLoops: initLoops};
